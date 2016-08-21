@@ -4,13 +4,21 @@ author: "alfonso reyes"
 date: "August 21, 2016"
 output: html_document
 ---
-
+# Using XLConnect
 ```{r}
-library(RODBC)
-channel <- odbcConnectExcel("oilfield_25.xlsx")
-mydataframe <- sqlFetch(channel, "mysheet")
-odbcClose(channel)
+library(XLConnect)
+df <- readWorksheetFromFile("oilfield_25.xlsx", sheet=1)
+summary(df)
+```
 
-mydataframe
+# Using xlsx
+```{r}
+library(xlsx)
+workbook <- "oilfield_25.xlsx"
+mydataframe <- read.xlsx(workbook, 1)
+dim(mydataframe)
+names(mydataframe)
+#summary(mydataframe)
+mydataframe$Wellname
 ```
 
