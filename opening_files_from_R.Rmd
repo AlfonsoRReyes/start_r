@@ -22,3 +22,12 @@ names(mydataframe)
 mydataframe$Wellname
 ```
 
+# Using gdata
+
+```{r}
+# install.packages("gdata")
+library(gdata)
+df <- read.xls("oilfield_25.xlsx",sheet=1)
+names(df)
+```
+
