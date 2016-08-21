@@ -1,0 +1,16 @@
+---
+title: "opening_files"
+author: "alfonso reyes"
+date: "August 21, 2016"
+output: html_document
+---
+
+```{r}
+library(RODBC)
+channel <- odbcConnectExcel("oilfield_25.xlsx")
+mydataframe <- sqlFetch(channel, "mysheet")
+odbcClose(channel)
+
+mydataframe
+```
+
