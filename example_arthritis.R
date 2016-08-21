@@ -1,2 +1,2 @@
 library("vcd")
-example("Arthritis")
+example("Arthritis")    # built-in example
