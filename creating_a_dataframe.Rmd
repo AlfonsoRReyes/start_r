@@ -1,0 +1,78 @@
+---
+title: "creating a data frame"
+author: "alfonso reyes"
+date: "August 21, 2016"
+output: html_document
+---
+
+## Creating a data frame from vectors
+
+```{r}
+patientID <- c(1, 2, 3, 4)
+age <- c(25, 34, 28, 52)
+diabetes <- c("Type1", "Type2", "Type1", "Type1")
+status <- c("Poor", "Improved", "Excellent", "Poor")
+patientdata <- data.frame(patientID, age, diabetes, status)
+patientdata
+```
+
+### Specifying elements in a dataframe
+```{r}
+patientdata[1:2]
+```
+
+or:
+
+```{r}
+patientdata[c("diabetes", "status")]
+```
+which is similar to Python DataFrame:
+df[["diabetes", "status"]]
+
+
+Also, we can list a specific column with:
+```{r}
+patientdata$age
+```
+
+
+Cross tabulate diabetes type by status:
+
+```{r}
+table(patientdata$diabetes, patientdata$status)
+```
+
+## attach, dettach, with
+
+```{r}
+attach(mtcars)
+  summary(mpg)
+  plot(mpg, disp)
+  plot(mpg, wt)
+detach(mtcars)
+```
+
+or:
+
+```{r}
+with(mtcars, {
+  summary(mpg, disp, wt)
+  plot(mpg, disp)
+  plot(mpg, wt)
+})
+```
+
+If you need to create objects that will exist outside of the with() construct, use the special assignment operator <<- instead of the standard one (<-).
+
+```{r}
+with(mtcars, {
+   nokeepstats <- summary(mpg)
+   keepstats <<- summary(mpg)
+})
+# nokeepstats will produce error
+keepstats
+```
+
+
+
+
